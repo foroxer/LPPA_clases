@@ -11,11 +11,12 @@ namespace WebApplication3
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] != null && Session["comment"] != null)
-            {
-                user.Text = Session["user"].ToString();
-                comment.InnerText = Session["comment"].ToString();
-            }
+            // el metodo se ejecuta cada vez que se clickea el boton por lo que no funciona hacer esto
+            //if (Session["user"] != null && Session["comment"] != null)
+            //{
+            //    user.Text = Session["user"].ToString();
+            //    comment.InnerText = Session["comment"].ToString();
+            //}
         }
         protected void click1(object sender, EventArgs e)
         {
