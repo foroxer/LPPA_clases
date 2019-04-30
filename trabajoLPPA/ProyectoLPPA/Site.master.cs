@@ -18,8 +18,10 @@ public partial class SiteMaster : MasterPage
 
     protected void Page_Init(object sender, EventArgs e)
     {
+        this.btnLogOut.ServerClick += BtnLogOut_ServerClick;
         // El código siguiente ayuda a proteger frente a ataques XSRF
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];
+       
         Guid requestCookieGuidValue;
         if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
         {
@@ -43,9 +45,22 @@ public partial class SiteMaster : MasterPage
                 responseCookie.Secure = true;
             }
             Response.Cookies.Set(responseCookie);
+            
         }
-
+       
         Page.PreLoad += master_Page_PreLoad;
+    }
+
+    private void BtnLogOut_ServerClick(object sender, EventArgs e)
+    {
+        this.Response.Cookies.Remove("tipo");
+        this.Request.Cookies.Remove("tipo");
+        this.Response.Cookies.Remove("user");
+        this.Request.Cookies.Remove("user");
+
+        this.btnLogin.Visible = true;
+        this.btnLogOut.Visible = false;
+
     }
 
     protected void master_Page_PreLoad(object sender, EventArgs e)
@@ -69,6 +84,30 @@ public partial class SiteMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        var tipo = Request.Cookies["tipo"];
+        var user = Request.Cookies["user"];
+        if (user != null && user.Values.Count > 0 && user.Value != null)
+        {
+            Response.Cookies.Set(new HttpCookie("user", user.Value.ToString()));
+            Response.Cookies.Set(new HttpCookie("tipo", tipo.Value.ToString()));
+            btnLogin.Visible = false;
+            switch (tipo.Value.ToString())
+            {
+                case "S":
+                    this.mostrarCliente = true;
+                    break;
+                case "T":
+                    this.mostrarOperador = true;
+                    break;
+                case "A":
+                    this.mostrarWebmaster = true;
+                    break;
+            }
+        }
+        else
+        {
+            btnLogOut.Visible = false;
+        }
         if (!this.mostrarCliente)
             this.ulCliente.Visible = false;
         if (!this.mostrarWebmaster)

@@ -22,30 +22,29 @@ public partial class Account_Login : Page
 
         protected void LogIn(object sender, EventArgs e)
         {
-            UserManager manager = new UserManager();
             if (IsValid)
             {
             SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings[1].ConnectionString);
             cn.Open();
             SqlTransaction tx = cn.BeginTransaction();
-            SqlCommand cmd = new SqlCommand("SELECT * from dbo.AspNetUsers where UserName = @id and Password = @password");
+            SqlCommand cmd = new SqlCommand("SELECT * from Usuario where Alias = @id and Password = @password");
             cmd.Parameters.Add(new SqlParameter("id", UserName.Text));
             cmd.Parameters.Add(new SqlParameter("password", Password.Text));
             cmd.Connection = cn;
             cmd.Transaction = tx;
             SqlDataReader reader = cmd.ExecuteReader();
-            ApplicationUser user = null;
-
+            Response.Cookies.Clear();
             if (reader.Read())
             {
-                user = new ApplicationUser();
+                Response.Cookies.Add(new HttpCookie("user", reader.GetString(5)));
+                Response.Cookies.Add(new HttpCookie("tipo", reader.GetString(4).Trim()));
+                
             }
             reader.Close();
             tx.Commit();
             cn.Close();
-            if (user != null)
+            if (Response.Cookies.Count > 0)
                 {
-                    
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 }
                 else
