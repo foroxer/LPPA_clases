@@ -12,7 +12,6 @@ public partial class Account_Login : Page
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterHyperLink.NavigateUrl = "Register";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
             {
@@ -24,7 +23,7 @@ public partial class Account_Login : Page
         {
             if (IsValid)
             {
-            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings[1].ConnectionString);
+            SqlConnection cn = ConexionSingleton.obtenerConexion();
             cn.Open();
             SqlTransaction tx = cn.BeginTransaction();
             SqlCommand cmd = new SqlCommand("SELECT * from Usuario where Alias = @id and Password = @password");

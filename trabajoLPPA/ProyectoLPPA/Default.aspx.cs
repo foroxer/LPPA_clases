@@ -9,6 +9,9 @@ public partial class _Default : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        object pepe = Request.QueryString[""];
+        HttpCookie cookie = new HttpCookie("pepe");
+        object d = Application["asd"];
 
     }
 }

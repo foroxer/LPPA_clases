@@ -86,6 +86,7 @@ public partial class SiteMaster : MasterPage
     {
         var tipo = Request.Cookies["tipo"];
         var user = Request.Cookies["user"];
+
         if (user != null && user.Values.Count > 0 && user.Value != null)
         {
             Response.Cookies.Set(new HttpCookie("user", user.Value.ToString()));
