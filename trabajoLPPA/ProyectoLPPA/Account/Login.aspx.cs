@@ -33,10 +33,11 @@ public partial class Account_Login : Page
             Response.Cookies.Clear();
             String user = null;
             String tipo = null;
-
+            int id = 0;
 
             if (reader.Read())
             {
+                id =  reader.GetInt32(0);
                 user = reader.GetString(5);
                 tipo = reader.GetString(4).Trim();
                 Response.Cookies.Add(new HttpCookie("user", user));
@@ -47,7 +48,7 @@ public partial class Account_Login : Page
             tx.Commit();
             cn.Close();
             if(user != null)
-                SeguridadUtiles.grabarBitacora(0, "Se logueo " + user + " que tiene el tipo " + tipo);
+                SeguridadUtiles.grabarBitacora(id, "Se logueo " + user + " que tiene el tipo " + tipo);
 
             if (Response.Cookies.Count > 0)
                 {
