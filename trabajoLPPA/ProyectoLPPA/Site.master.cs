@@ -5,6 +5,7 @@ using System.IO;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
+using System.Web.Providers.Entities;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -65,12 +66,19 @@ public partial class SiteMaster : MasterPage
 
     private void BtnLogOut_ServerClick(object sender, EventArgs e)
     {
+
+        String user = this.Request.Cookies["user"].Value.ToString();
+        String type = this.Request.Cookies["tipo"].Value.ToString();
+        int userId = int.Parse(this.Request.Cookies["userId"].Value.ToString());
+
         this.Response.Cookies["tipo"].Expires =DateTime.Now.AddDays(-1);
         this.Request.Cookies["tipo"].Expires = DateTime.Now.AddDays(-1);
         this.Request.Cookies["tipo"].Value = "invalid";
         this.Response.Cookies["tipo"].Value = "invalid";
         this.Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
         this.Request.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
+        this.Response.Cookies["userId"].Expires = DateTime.Now.AddDays(-1);
+        this.Request.Cookies["userId"].Expires = DateTime.Now.AddDays(-1);
         this.ulCliente.Visible = false;
         this.ulWebmaster.Visible = false;
         this.ulOperador.Visible = false;
@@ -78,6 +86,8 @@ public partial class SiteMaster : MasterPage
         Session.Abandon();
         this.btnLogin.Visible = true;
         this.btnLogOut.Visible = false;
+
+        SeguridadUtiles.grabarBitacora(userId, "Se deslogueo " + user + " que tiene el tipo " + type);
 
     }
 

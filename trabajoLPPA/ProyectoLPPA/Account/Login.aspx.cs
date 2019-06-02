@@ -42,6 +42,7 @@ public partial class Account_Login : Page
                 tipo = reader.GetString(4).Trim();
                 Response.Cookies.Add(new HttpCookie("user", user));
                 Response.Cookies.Add(new HttpCookie("tipo", tipo));
+                Response.Cookies.Add(new HttpCookie("userId", id.ToString()));
                 
             }
             reader.Close();
