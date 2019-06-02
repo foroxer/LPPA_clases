@@ -15,6 +15,43 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script type="text/javascript">
+        function verificar() {
+            var mail = prompt("Ingrese el mail a validar");
+
+            if (!mail.toString().includes("@")) {
+                alert("Necesitas tener un arroba");
+                return;
+            }
+            if (!mail.toString().includes(".")) {
+                alert("Necesitas tener un . ");
+                return;
+            }
+            if (mail.length < 7)
+            {
+                alert("Al menos 7 caracteres"); return;
+            }
+            if (mail.indexOf("@") == 0) {
+                alert("Necesitas meter algo antes del @");
+                return;
+            }
+            if (mail.indexOf("@") + 1 == mail.indexOf(".")) {
+                alert("Falta el dominio entre el arroba y el punto");
+                return;
+            }
+            if (mail.length-1 == mail.indexOf(".")) {
+                alert("al menos un caracter despues del punto");
+                return;
+            }
+            debugger;
+            if (mail.match(new RegExp("@","g")).length > 1) {
+                alert("ingresaste mas de un @");
+                return;
+            }
+            alert("El mail es valido");
+
+        }
+    </script>
 
 </head>
 <body>
