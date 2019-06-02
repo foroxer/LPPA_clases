@@ -67,6 +67,8 @@ public partial class SiteMaster : MasterPage
     {
         this.Response.Cookies["tipo"].Expires =DateTime.Now.AddDays(-1);
         this.Request.Cookies["tipo"].Expires = DateTime.Now.AddDays(-1);
+        this.Request.Cookies["tipo"].Value = "invalid";
+        this.Response.Cookies["tipo"].Value = "invalid";
         this.Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
         this.Request.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
         this.ulCliente.Visible = false;
@@ -140,6 +142,7 @@ public partial class SiteMaster : MasterPage
     private void handleRestore(object sender, EventArgs e)
     {
         SeguridadUtiles.realizarRestore(AppDomain.CurrentDomain.BaseDirectory + "Backup//bkp1.bak");
+        this.errorBitacora.Visible = !this.verificarDatos();
     }
 
     private void handleBackup(object sender, EventArgs e)
