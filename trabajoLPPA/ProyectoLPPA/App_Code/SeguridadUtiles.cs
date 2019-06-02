@@ -14,6 +14,9 @@ namespace ProyectoLPPA
 
     public static class SeguridadUtiles
     {
+
+        private static String dbName =  "[C:\\USERS\\AMARRACO\\DOCUMENTS\\LPPA_CLASES\\TRABAJOLPPA\\PROYECTOLPPA\\APP_DATA\\BASEDEDATOS.MDF]";
+        //C:\USERS\AMARRACO\DOCUMENTS\LPPA_CLASES\TRABAJOLPPA\PROYECTOLPPA\APP_DATA\BASEDEDATOS.MDF
         public static string recalcularDigitoHorizontal(String[] campos)
         {
             StringBuilder builder = new StringBuilder();
@@ -105,7 +108,7 @@ namespace ProyectoLPPA
             StringBuilder queryText = new StringBuilder();
             directorio = directorio.Replace("//", "\\");
             queryText.Append(" USE MASTER ");
-            queryText.Append(" BACKUP DATABASE MSSQLLocalDB ");
+            queryText.Append(" BACKUP DATABASE " + dbName);
 
             for (int i = 0; i < partes; i++)
             {
@@ -142,16 +145,16 @@ namespace ProyectoLPPA
             
             SqlConnection connection = ConexionSingleton.obtenerConexion();
             connection.Open();
+            directorio = directorio.Replace("//", "\\");
             StringBuilder queryText = new StringBuilder();
             queryText.Append(" USE MASTER ");
 
-            queryText.Append(" alter database [TRABAJO_DIPLOMA]  ");
+            queryText.Append(" alter database  " + dbName);
             queryText.Append(" set offline with rollback immediate ");
-            queryText.Append(" RESTORE DATABASE TRABAJO_DIPLOMA ");
-            //FROM  DISK = '" + directorio + "' WITH REPLACE");
-            queryText.Append(directorio);
+            queryText.Append(" RESTORE DATABASE  " + dbName);
+            queryText.Append(" FROM  DISK = '" + directorio + "'");
             queryText.Append(" WITH REPLACE ");
-            queryText.Append(" alter database [TRABAJO_DIPLOMA]  ");
+            queryText.Append(" alter database  " + dbName);
             queryText.Append(" set online with rollback immediate ");
             SqlCommand query = new SqlCommand(queryText.ToString(), connection);
             try
@@ -179,7 +182,7 @@ namespace ProyectoLPPA
             connection.Open();
             SqlTransaction tx = connection.BeginTransaction();
             StringBuilder builder = new StringBuilder(" INSERT INTO BITACORA  (");
-            builder.Append("idUsuari,");
+            builder.Append("idUsuario,");
             builder.Append("mensaje,");
             builder.Append("dvh )");
 
@@ -259,6 +262,8 @@ namespace ProyectoLPPA
         {
 
             SqlConnection connection = ConexionSingleton.obtenerConexion();
+            if (connection.State == System.Data.ConnectionState.Open)
+                connection.Close();
             connection.Open();
             SqlTransaction tr = connection.BeginTransaction();
             SqlDataReader reader = null;
@@ -295,7 +300,7 @@ namespace ProyectoLPPA
             digitoVerticalCalculado.Add("BITACORA", stringParaDVH.ToString());
             reader.Close();
             stringParaDVH.Clear();
-            
+            connection.Close();
             if (mensajesDeError.Count > 0)
             {
                 foreach (String item in mensajesDeError)
@@ -305,8 +310,6 @@ namespace ProyectoLPPA
                 throw new Exception("Falló la integridad de datos.");
             }
         }
-
-
 
     }
 }

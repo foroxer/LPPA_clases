@@ -58,6 +58,8 @@
                     <ul class="nav navbar-nav" id="ulWebmaster" runat="server">
                         <li><a runat="server" id="hacerBackup" href="#">HacerBackUp</a></li>
                         <li><a runat="server" id="restaurarBackup" href="#">RestaurarBackup</a></li>
+                        <li ><a style="color:red;font-size:13px" runat="server" id="errorBitacora" href="#">Hubo un error con integridad de datos</a></li>
+
                     </ul>
                     <ul class="nav navbar-nav" id="ulCliente" runat="server">
                         <li><a runat="server" id="A4" href="~/Rutinas">Ver Rutinas</a></li>
@@ -82,5 +84,6 @@
             
         </div>
     </form>
+
 </body>
 </html>

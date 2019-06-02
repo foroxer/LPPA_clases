@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ProyectoLPPA;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
@@ -22,6 +24,16 @@ public partial class SiteMaster : MasterPage
         // El código siguiente ayuda a proteger frente a ataques XSRF
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];
        
+        if(Request.Cookies["user"] == null)
+        {
+            this.btnLogOut.Visible = false;
+            this.btnLogin.Visible = true;
+        }
+        else
+        {
+            this.btnLogin.Visible = false;
+            this.btnLogOut.Visible = true;
+        }
         Guid requestCookieGuidValue;
         if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
         {
@@ -53,11 +65,15 @@ public partial class SiteMaster : MasterPage
 
     private void BtnLogOut_ServerClick(object sender, EventArgs e)
     {
-        this.Response.Cookies.Remove("tipo");
-        this.Request.Cookies.Remove("tipo");
-        this.Response.Cookies.Remove("user");
-        this.Request.Cookies.Remove("user");
+        this.Response.Cookies["tipo"].Expires =DateTime.Now.AddDays(-1);
+        this.Request.Cookies["tipo"].Expires = DateTime.Now.AddDays(-1);
+        this.Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
+        this.Request.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
+        this.ulCliente.Visible = false;
+        this.ulWebmaster.Visible = false;
+        this.ulOperador.Visible = false;
 
+        Session.Abandon();
         this.btnLogin.Visible = true;
         this.btnLogOut.Visible = false;
 
@@ -86,6 +102,7 @@ public partial class SiteMaster : MasterPage
     {
         var tipo = Request.Cookies["tipo"];
         var user = Request.Cookies["user"];
+        this.errorBitacora.Visible = false;
 
         if (user != null && user.Values.Count > 0 && user.Value != null)
         {
@@ -102,6 +119,9 @@ public partial class SiteMaster : MasterPage
                     break;
                 case "A":
                     this.mostrarWebmaster = true;
+                    this.hacerBackup.ServerClick += handleBackup;
+                    this.restaurarBackup.ServerClick += handleRestore;
+                    this.errorBitacora.Visible = !this.verificarDatos();
                     break;
             }
         }
@@ -117,8 +137,35 @@ public partial class SiteMaster : MasterPage
             this.ulOperador.Visible = false;
     }
 
+    private void handleRestore(object sender, EventArgs e)
+    {
+        SeguridadUtiles.realizarRestore(AppDomain.CurrentDomain.BaseDirectory + "Backup//bkp1.bak");
+    }
+
+    private void handleBackup(object sender, EventArgs e)
+    {
+        SeguridadUtiles.realizarBackup(1, AppDomain.CurrentDomain.BaseDirectory + "Backup//bkp");
+    }
+
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
     {
         Context.GetOwinContext().Authentication.SignOut();
     }
+
+
+    protected Boolean verificarDatos()
+    {
+        Boolean datosOk = false;
+        try
+        {
+            SeguridadUtiles.verificarDigitosVerificadores();
+            datosOk = true;
+        }
+        catch (Exception ex)
+        {
+            datosOk = false;  
+        }
+        return datosOk;
+    }
+
 }
