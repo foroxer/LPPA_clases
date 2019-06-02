@@ -25,9 +25,18 @@ public class User
     }
 
 
-    public User(String username,String tipo)
+    private int _id;
+
+    public int id
+    {
+        get { return _id; }
+        set { _id = value; }
+    }
+
+    public User(String username,String tipo,int id)
     {
         this.username = username;
         this.tipo = tipo;
+        this.id = id;
     }
 }
