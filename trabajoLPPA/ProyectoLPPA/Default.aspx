@@ -8,7 +8,9 @@
     <p class="lead">
             hello mr admin
         </p>
-    
+    <button onclick="verificar()">
+        Validar Mail
+    </button>
     <%}
     else
     { %>
@@ -29,4 +31,6 @@
    
      
     </div>
+
+    
 </asp:Content>
