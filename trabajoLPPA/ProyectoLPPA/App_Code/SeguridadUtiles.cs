@@ -301,7 +301,32 @@ namespace ProyectoLPPA
             digitoVerticalCalculado.Add("BITACORA", stringParaDVH.ToString());
             reader.Close();
             stringParaDVH.Clear();
+            
+
+            query = " SELECT DV_NOMBRE_TABLA,DV_DIGITO_CALCULADO,dv_id FROM DIGITO_VERTICAL ";
+
+            cmd.CommandText = query;
+
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                builder.Clear();
+                string tabla = reader.GetValue(0).ToString();
+                string md5Base = reader.GetValue(1).ToString();
+                string md5Calculado = digitoVerticalCalculado[tabla];
+
+                md5Calculado = SeguridadUtiles.encriptarMD5(md5Calculado);
+
+                if (!md5Base.Equals(md5Calculado))
+                {
+                    long id = (long)reader.GetValue(2);
+                    mensajesDeError.Add("Falló la integridad de datos en digito vertical en el row " + id.ToString());
+                }
+
+            }
+            reader.Close();
             connection.Close();
+
             if (mensajesDeError.Count > 0)
             {
                 foreach (String item in mensajesDeError)

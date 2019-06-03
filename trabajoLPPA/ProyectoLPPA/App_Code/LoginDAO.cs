@@ -36,7 +36,7 @@ public class LoginDAO
 
         if (reader.Read())
         {
-            user = new User(reader.GetString(5),reader.GetString(4).Trim(), reader.GetInt32(0)););
+            user = new User(reader.GetString(5),reader.GetString(4).Trim(), reader.GetInt32(0));
             
         }
         reader.Close();
