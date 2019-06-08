@@ -9,7 +9,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+trabajoLPPA/.vs
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
