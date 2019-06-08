@@ -88,6 +88,7 @@ public partial class SiteMaster : MasterPage
         this.btnLogOut.Visible = false;
 
         SeguridadUtiles.grabarBitacora(userId, "Se deslogueo " + user + " que tiene el tipo " + type);
+        Response.Redirect("Default.aspx");
 
     }
 

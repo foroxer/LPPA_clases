@@ -11,7 +11,6 @@ public partial class Account_Login : Page
 {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             
         }
 
@@ -25,8 +24,8 @@ public partial class Account_Login : Page
           
             if (Response.Cookies.Count > 0)
                 {
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                }
+                    Response.Redirect("../Default.aspx");
+            }
                 else
                 {
                     FailureText.Text = "Datos invalidos.";

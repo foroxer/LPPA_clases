@@ -7,11 +7,32 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : Page
 {
+
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-        object pepe = Request.QueryString[""];
-        HttpCookie cookie = new HttpCookie("pepe");
-        object d = Application["asd"];
+        if (Request.Cookies["tipo"] != null)
+        {
+            String aspxPage = returnRoute(Request.Cookies["tipo"].Value);
+            if (!String.IsNullOrEmpty(aspxPage))
+            {
+                Response.Redirect(aspxPage);
+            }
+        }
+    }
 
+    private String returnRoute(String userType)
+    {
+        switch (userType)
+        {
+            case "A":
+                return "Admin.aspx";
+            case "S":
+                return "Cliente.aspx";
+            case "T":
+                return "Trainer.aspx";
+            default:
+                return null;
+        }
     }
 }
