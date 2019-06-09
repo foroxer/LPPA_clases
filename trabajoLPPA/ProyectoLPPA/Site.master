@@ -15,6 +15,11 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet"  />
+    <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet"  />
+    <link href="~/Content/jquery-ui.theme.min.css" rel="stylesheet"  />
+    <link href="~/Content/dataTables.bootstrap4.css" rel="stylesheet" />
+ 
     <script type="text/javascript">
         function verificar() {
             var mail = prompt("Ingrese el mail a validar");
@@ -51,8 +56,10 @@
             alert("El mail es valido");
 
         }
-    </script>
 
+        
+    </script>
+    
 </head>
 <body>
     <form runat="server">
@@ -63,6 +70,8 @@
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="datatables" />
+                <asp:ScriptReference Name="jqueryUI"/>
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                 <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -75,7 +84,7 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
-
+        
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container" style="padding-left:0px">
                 <div class="navbar-header">

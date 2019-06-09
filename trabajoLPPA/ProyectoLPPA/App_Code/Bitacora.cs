@@ -19,4 +19,10 @@ public class Bitacora
         this.mensaje = mensaje;
         this.nombre = nombre;
     }
+
+    public String _fecha { get { return fecha.ToShortDateString(); } }
+
+    public String _mensaje { get { return mensaje; } }
+
+    public String _nombre { get { return nombre; } }
 }
