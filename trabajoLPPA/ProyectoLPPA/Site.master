@@ -108,8 +108,8 @@
 
                     </ul>
                     <ul class="nav navbar-nav" id="ulCliente" runat="server">
-                        <li><a runat="server" id="A4" href="~/UI/Rutinas.aspx">Ver Rutinas</a></li>
-                        <li><a runat="server" id="A5" href="~/UI/Perfil.aspx">Ver Perfil</a></li>
+                        <li><a runat="server" id="A4" href="~/UI/VerRutinas.aspx">Ver Rutinas</a></li>
+                        <li><a runat="server" id="A5" href="~/UI/VerPerfil.aspx">Ver Perfil</a></li>
                     </ul>
                     <ul class="nav navbar-nav" id="ulOperador" runat="server">
                         <li><a runat="server" id="A7" href="~/UI/VerClientes.aspx">Ver Clientes</a></li>
