@@ -17,7 +17,7 @@ public partial class Admin : System.Web.UI.Page
     [WebMethod]
     public static string getBitacoraJSON(string desde,string hasta)
     {
-            return new MostrarBitacora().execute(desde, hasta);
+            return new BitacoraService().execute(desde, hasta);
     }
 
 }

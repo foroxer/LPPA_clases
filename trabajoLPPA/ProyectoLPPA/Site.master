@@ -94,7 +94,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <asp:Image ImageUrl="~/Content/PSD-files-Track-.png" CssClass="image-style" runat="server" />
-                    <a class="navbar-brand" style="margin-left:5px" runat="server" href="~/">Megatlin</a>
+                    <a class="navbar-brand" style="margin-left:5px" runat="server" href="~/UI/Default.aspx">Megatlin</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" >

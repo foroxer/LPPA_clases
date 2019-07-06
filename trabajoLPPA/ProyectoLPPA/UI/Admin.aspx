@@ -53,6 +53,13 @@
     </div>
 </div>
     <script type="text/javascript">
+        var dataTable = $('#table').DataTable({
+                columns: [
+                    { data: '_fecha' , title: "FECHA"},
+                    { data: '_mensaje', title: "MENSAJE" },
+                    { data: '_nombre', title: "NOMBRE" },
+                ]
+            });
         $(function () {
             $("#DESDE").datepicker({
                 "showAnim": "drop",
@@ -79,24 +86,23 @@
                     console.log("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
                 },
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data.d);
                     createDT(data.d);
                 },
                 complete: function (jqXHR, status) {
-                    alert("complete: " + status + "\n\nResponse: " + jqXHR.responseText);
+                    //alert("complete: " + status + "\n\nResponse: " + jqXHR.responseText);
                 }
             });
         }
 
         function createDT(data) {
-            $('#table').DataTable({
-                data: JSON.parse(data),
-                columns: [
-                    { data: '_fecha' , title: "FECHA"},
-                    { data: '_mensaje', title: "MENSAJE" },
-                    { data: '_nombre', title: "NOMBRE" },
-                ]
+            dataTable.rows().remove().draw();
+            var datos = JSON.parse(data);
+            datos.forEach(function(element) {
+            //var row = '<tr><td>' + element._fecha + '</td>'+ '<td>' + element._mensaje + '</td>' + '<td>' + element._nombre + '</td></tr>';
+            dataTable.row.add(element);
             });
+            dataTable.draw();
         }
     </script>
 </asp:Content>

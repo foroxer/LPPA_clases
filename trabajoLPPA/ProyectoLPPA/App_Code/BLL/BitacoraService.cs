@@ -8,13 +8,13 @@ using System.Web.Script.Serialization;
 /// <summary>
 /// Descripción breve de MostrarBitacora
 /// </summary>
-public class MostrarBitacora
+public class BitacoraService
 {
-    public MostrarBitacora(){ }
+    public BitacoraService(){ }
 
     public String execute(String desde, String hasta)
     {
-        List<Bitacora> registros = MostrarBitacoraRepository.execute(desde, hasta);
+        List<Bitacora> registros = BitacoraDao.execute(desde, hasta);
         return new JavaScriptSerializer().Serialize(registros);
     }
 }

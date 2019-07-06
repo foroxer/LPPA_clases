@@ -9,9 +9,9 @@ using System.Web;
 /// <summary>
 /// Descripción breve de MostrarBitacoraRepository
 /// </summary>
-public class MostrarBitacoraRepository
+public class BitacoraDao
 {
-    public MostrarBitacoraRepository()
+    public BitacoraDao()
     {
     }
 
@@ -40,7 +40,7 @@ public class MostrarBitacoraRepository
 
         if (hasta != null)
         {
-            sb.Append(" fecha =< @hasta");
+            sb.Append(" fecha <= @hasta");
             cmd.Parameters.Add(new SqlParameter("hasta", hasta));
         }
         cmd.CommandText = sb.ToString();
@@ -54,6 +54,7 @@ public class MostrarBitacoraRepository
         reader.Close();
         tx.Commit();
         cn.Close();
+        tx.Dispose();
         return registros;
     }
 }
