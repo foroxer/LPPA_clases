@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
-using System.IO;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 
@@ -144,7 +141,7 @@ namespace ProyectoLPPA
 
         {
             
-            SqlConnection connection = ConexionSingleton.obtenerConexion();
+            SqlConnection connection =  ConexionSingleton.obtenerConexion();
             connection.Open();
             directorio = directorio.Replace("//", "\\");
             StringBuilder queryText = new StringBuilder();

@@ -98,8 +98,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" >
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/About">Acerca de</a></li>
+                        <li><a runat="server" href="~/UI/Default.aspx">Inicio</a></li>
+                        <li><a runat="server" href="~/UI/About.aspx">Acerca de</a></li>
                     </ul>
                     <ul class="nav navbar-nav" id="ulWebmaster" runat="server">
                         <li><a runat="server" id="hacerBackup" href="#">HacerBackUp</a></li>
@@ -108,14 +108,14 @@
 
                     </ul>
                     <ul class="nav navbar-nav" id="ulCliente" runat="server">
-                        <li><a runat="server" id="A4" href="~/Rutinas">Ver Rutinas</a></li>
-                        <li><a runat="server" id="A5" href="~/Perfil">Ver Perfil</a></li>
+                        <li><a runat="server" id="A4" href="~/UI/Rutinas.aspx">Ver Rutinas</a></li>
+                        <li><a runat="server" id="A5" href="~/UI/Perfil.aspx">Ver Perfil</a></li>
                     </ul>
                     <ul class="nav navbar-nav" id="ulOperador" runat="server">
-                        <li><a runat="server" id="A7" href="~/VerClientes">Ver Clientes</a></li>
+                        <li><a runat="server" id="A7" href="~/UI/VerClientes.aspx">Ver Clientes</a></li>
                     </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a runat="server" id="btnLogin" href="~/Account/Login">Iniciar sesión</a></li>
+                            <li><a runat="server" id="btnLogin" href="~/UI/Login.aspx">Iniciar sesión</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a runat="server" id="btnLogOut" >Cerrar Sesión</a></li>

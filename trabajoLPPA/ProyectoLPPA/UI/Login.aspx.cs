@@ -24,7 +24,7 @@ public partial class Account_Login : Page
           
             if (Response.Cookies.Count > 0)
                 {
-                    Response.Redirect("../Default.aspx");
+                    Response.Redirect("Default.aspx");
             }
                 else
                 {

@@ -33,6 +33,11 @@ public class MostrarBitacoraRepository
             sb.Append(" fecha >= @desde");
             cmd.Parameters.Add(new SqlParameter("desde", desde));
         }
+        if (desde != null && hasta != null )
+        {
+            sb.Append(" and ");
+        }
+
         if (hasta != null)
         {
             sb.Append(" fecha =< @hasta");
