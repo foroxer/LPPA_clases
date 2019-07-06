@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Web;
 
@@ -14,11 +15,11 @@ public class BitacoraDao
     public BitacoraDao()
     {
     }
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public static List<Bitacora> execute(String desde, String hasta)
     {
         SqlConnection cn = ConexionSingleton.obtenerConexion();
-        if (cn.State == System.Data.ConnectionState.Open)
+        if (cn.State != System.Data.ConnectionState.Closed)
             cn.Close();
         cn.Open();
         SqlTransaction tx = cn.BeginTransaction();
