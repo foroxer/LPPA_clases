@@ -12,9 +12,8 @@ namespace ProyectoLPPA
     public static class SeguridadUtiles
     {
 
-        private static String dbName = "[" + AppDomain.CurrentDomain.BaseDirectory + "APP_DATA\\BASEDEDATOS.MDF]";
-        //"[C:\\USERS\\AMARRACO\\DOCUMENTS\\LPPA_CLASES\\TRABAJOLPPA\\PROYECTOLPPA\\APP_DATA\\BASEDEDATOS.MDF]";
-        //C:\USERS\AMARRACO\DOCUMENTS\LPPA_CLASES\TRABAJOLPPA\PROYECTOLPPA\APP_DATA\BASEDEDATOS.MDF
+        private static String dbName = "lppa";
+
         public static string recalcularDigitoHorizontal(String[] campos)
         {
             StringBuilder builder = new StringBuilder();
