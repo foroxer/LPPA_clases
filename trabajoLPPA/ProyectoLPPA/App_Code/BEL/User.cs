@@ -30,10 +30,20 @@ public class User
         set { _id = value; }
     }
 
-    public User(String username,String tipo,int id)
+    public User(String username,String tipo,int id, int intentos)
     {
         this.username = username;
         this.tipo = tipo;
         this.id = id;
+        this.intentos = intentos;
     }
+
+    private int _intentos;
+
+    public int intentos
+    {
+        get { return _intentos; }
+        set { _intentos = value; }
+    }
+
 }
