@@ -25,8 +25,10 @@ namespace ProyectoLPPA
             {
                 _conexion = constructor();
             }
-            if (_conexion.State != System.Data.ConnectionState.Closed)
+            if (_conexion.State == System.Data.ConnectionState.Open)
+            {
                 _conexion.Close();
+            }
             return _conexion;
         }
 

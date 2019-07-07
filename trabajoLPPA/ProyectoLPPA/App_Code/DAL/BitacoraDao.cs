@@ -15,7 +15,6 @@ public class BitacoraDao
     public BitacoraDao()
     {
     }
-    [MethodImpl(MethodImplOptions.Synchronized)]
     public static List<Bitacora> execute(String desde, String hasta)
     {
         SqlConnection cn = ConexionSingleton.obtenerConexion();
@@ -54,7 +53,6 @@ public class BitacoraDao
         reader.Close();
         tx.Commit();
         cn.Close();
-        tx.Dispose();
         return registros;
     }
 }
