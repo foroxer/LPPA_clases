@@ -16,6 +16,8 @@ namespace ProyectoLPPA
     {
         static String key = "820197F22E4E16897823C52B8F3C08DB";
 
+        private static String dbName = "lppa";
+
         private static String dbName = "[" + AppDomain.CurrentDomain.BaseDirectory + "APP_DATA\\BASEDEDATOS.MDF]";
         public static string recalcularDigitoHorizontal(String[] campos)
         {
