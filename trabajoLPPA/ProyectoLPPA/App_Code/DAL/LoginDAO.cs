@@ -9,18 +9,14 @@ public class LoginDAO
 {
     public LoginDAO()
     {
-        //
-        // TODO: Add constructor logic here
-        //
     }
 
 
     public static User login(String username, String password)
     {
         SqlConnection cn = ConexionSingleton.obtenerConexion();
-        if (cn.State == System.Data.ConnectionState.Open)
-            cn.Close();
         cn.Open();
+        password = SeguridadUtiles.encriptarMD5(password);
         SqlTransaction tx = cn.BeginTransaction();
         SqlCommand cmd = new SqlCommand("SELECT * from Usuario where Alias = @id and Password = @password");
         cmd.Parameters.Add(new SqlParameter("id", username));

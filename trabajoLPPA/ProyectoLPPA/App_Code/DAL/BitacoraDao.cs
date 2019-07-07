@@ -19,8 +19,7 @@ public class BitacoraDao
     public static List<Bitacora> execute(String desde, String hasta)
     {
         SqlConnection cn = ConexionSingleton.obtenerConexion();
-        if (cn.State != System.Data.ConnectionState.Closed)
-            cn.Close();
+
         cn.Open();
         SqlTransaction tx = cn.BeginTransaction();
         StringBuilder sb = new StringBuilder();
