@@ -31,17 +31,19 @@
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" />
+                            <a href="RestaurarPassword.aspx" style="padding: 6px 12px">Olvide mi password</a>
                         </div>
+
                     </div>
                 </div>
-                           </section>
+            </section>
         </div>
 
-       
+
     </div>
 </asp:Content>
 

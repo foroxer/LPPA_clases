@@ -10,11 +10,7 @@ using System.Web;
 public class LoginService
 {
     public LoginService()
-    {
-        //
-        // TODO: Add constructor logic here
-        //
-    }
+    { }
 
     public static void login(String user, String password, HttpResponse response)
     {
@@ -40,5 +36,11 @@ public class LoginService
             LoginDAO.wrongLogin(user);
         }
 
+    }
+
+    public static void restaurarPassword(String user,String password, HttpResponse response)
+    {
+        SeguridadUtiles.cambiarPassword(user, password);
+        response.Redirect("Login.aspx");
     }
 }
