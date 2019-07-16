@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -11,9 +12,13 @@ public partial class SiteMaster : MasterPage
     private Boolean mostrarCliente = false;
     private Boolean mostrarWebmaster = false;
     private Boolean mostrarOperador = false;
-
+    private Dictionary<String, List<String>> siteMap = new Dictionary<String, List<String>>();
+    
     protected void Page_Init(object sender, EventArgs e)
     {
+        siteMap.Add("A", new List<String> { "Admin.aspx" });
+        siteMap.Add("T", new List<String> { "Trainer.aspx", "VerClientes.aspx" });
+        siteMap.Add("S", new List<String> { "Cliente.aspx", "VerPerfil.aspx", "VerRutinas.aspx" });
         this.btnLogOut.ServerClick += BtnLogOut_ServerClick;       
         if(Request.Cookies["user"] == null)
         {
@@ -62,7 +67,12 @@ public partial class SiteMaster : MasterPage
         var tipo = Request.Cookies["tipo"];
         var user = Request.Cookies["user"];
         this.errorBitacora.Visible = false;
-
+        String path = ((System.Web.UI.Control)sender).Page.AppRelativeVirtualPath;
+        bool paginaPublica = esPaginaPublica(path);
+        if (!paginaPublica  && (user == null || !puedeAcceder(path, tipo.Value)))
+        {
+            Response.Redirect("Default.aspx");
+        }
         if (user != null && user.Values.Count > 0 && user.Value != null)
         {
             Response.Cookies.Set(new HttpCookie("user", user.Value.ToString()));
@@ -127,5 +137,29 @@ public partial class SiteMaster : MasterPage
         }
         return datosOk;
     }
+
+    private bool esPaginaPublica(String path)
+    {
+        if(path.Contains("Admin.aspx") || path.Contains("Cliente.aspx") 
+            || path.Contains("Trainer.aspx") || path.Contains("VerClientes.aspx")
+            || path.Contains("VerPerfil.aspx") || path.Contains("VerRutinas.aspx"))
+        {
+            return false;
+        }else
+        {
+            return true;
+        }
+    }
+    private bool puedeAcceder(String path, String tipo)
+    {
+        Boolean puedeAcceder = false;
+        this.siteMap[tipo].ForEach(x =>
+        {
+            if (path.Contains(x))
+                puedeAcceder = true;
+        });
+        return puedeAcceder;
+    }
+    
 
 }
