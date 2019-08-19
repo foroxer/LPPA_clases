@@ -55,7 +55,7 @@ public partial class SiteMaster : MasterPage
         this.btnLogin.Visible = true;
         this.btnLogOut.Visible = false;
 
-        SeguridadUtiles.grabarBitacora(userId, "Se deslogueo " + user + " que tiene el tipo " + type);
+        BitacoraDAO.grabarBitacora(userId, "Se deslogueo " + user + " que tiene el tipo " + type);
         Response.Redirect("Default.aspx");
 
     }
@@ -108,13 +108,13 @@ public partial class SiteMaster : MasterPage
 
     private void handleRestore(object sender, EventArgs e)
     {
-        SeguridadUtiles.realizarRestore(AppDomain.CurrentDomain.BaseDirectory + "Backup//bkp1.bak");
+        BackupDAO.realizarRestore(AppDomain.CurrentDomain.BaseDirectory + "Backup//bkp1.bak");
         this.errorBitacora.Visible = !this.verificarDatos();
     }
 
     private void handleBackup(object sender, EventArgs e)
     {
-        SeguridadUtiles.realizarBackup(1, AppDomain.CurrentDomain.BaseDirectory + "Backup//bkp");
+        BackupDAO.realizarBackup(1, AppDomain.CurrentDomain.BaseDirectory + "Backup//bkp");
     }
 
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
@@ -128,7 +128,7 @@ public partial class SiteMaster : MasterPage
         Boolean datosOk = false;
         try
         {
-            SeguridadUtiles.verificarDigitosVerificadores();
+            DigitosDAO.verificarDigitosVerificadores();
             datosOk = true;
         }
         catch (Exception ex)

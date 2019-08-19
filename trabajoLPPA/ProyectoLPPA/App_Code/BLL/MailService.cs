@@ -23,7 +23,7 @@ public class MailService
         string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         String newPass = StringUtilities.RandomString(8);
         String toEncript = user + "," + newPass;
-        toEncript = SeguridadUtiles.encriptarAES(toEncript);
+        toEncript = CryptoUtils.encriptarAES(toEncript);
         toEncript = HttpUtility.UrlEncode(toEncript);
 
         try
@@ -39,7 +39,7 @@ public class MailService
         }
         catch(Exception ex)
         {
-            SeguridadUtiles.grabarBitacora(0, "error en enviode mail de restauracion de password");
+            BitacoraDAO.grabarBitacora(0, "error en enviode mail de restauracion de password");
         }
 
     }

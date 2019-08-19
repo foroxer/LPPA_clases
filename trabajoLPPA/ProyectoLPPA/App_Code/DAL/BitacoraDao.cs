@@ -10,9 +10,9 @@ using System.Web;
 /// <summary>
 /// Descripción breve de MostrarBitacoraRepository
 /// </summary>
-public class BitacoraDao
+public class BitacoraDAO
 {
-    public BitacoraDao()
+    public BitacoraDAO()
     {
     }
     public static List<Bitacora> execute(String desde, String hasta)
@@ -54,5 +54,51 @@ public class BitacoraDao
         tx.Commit();
         cn.Close();
         return registros;
+    }
+
+    public static void grabarBitacora(int usuId, String mensaje)
+    {
+        SqlConnection connection = ConexionSingleton.obtenerConexion();
+        connection.Open();
+        SqlTransaction tx = connection.BeginTransaction();
+        StringBuilder builder = new StringBuilder(" INSERT INTO BITACORA  (");
+        builder.Append("idUsuario,");
+        builder.Append("mensaje,");
+        builder.Append("dvh )");
+
+        builder.Append(" VALUES (");
+        builder.Append(" @USUARIO,");
+        builder.Append(" @MENSAJE,");
+        builder.Append(" @DVH");
+        builder.Append(" ) ");
+        SqlCommand cmd = new SqlCommand(builder.ToString(), connection, tx);
+        DateTime fecha = DateTime.Now;
+        cmd.Parameters.Add(new SqlParameter("@MENSAJE", System.Data.SqlDbType.Text)).Value = mensaje;
+        cmd.Parameters.Add(new SqlParameter("@DVH", System.Data.SqlDbType.VarChar)).Value = DigitosDAO.recalcularDigitoHorizontal(new string[] { fecha.ToString(), mensaje });
+        cmd.Parameters.Add(new SqlParameter("@USUARIO", System.Data.SqlDbType.BigInt)).Value = usuId;
+
+        try
+        {
+            cmd.ExecuteNonQuery();
+            tx.Commit();
+            connection.Close();
+            DigitosDAO.recalcularDigitoVertical("BITACORA");
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                tx.Rollback();
+            }
+            catch (Exception)
+            {
+
+
+            }
+            connection.Close();
+            throw ex;
+        }
+
+
     }
 }

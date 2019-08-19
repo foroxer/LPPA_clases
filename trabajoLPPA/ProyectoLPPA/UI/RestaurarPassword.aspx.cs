@@ -8,7 +8,7 @@ public partial class UI_RestaurarPassword : System.Web.UI.Page
         String data = Request.Params.Get("data");
         if (data != null)
         {
-            data = SeguridadUtiles.desencriptarAES(data);
+            data = CryptoUtils.desencriptarAES(data);
             String user = data.Split(',')[0];
             String pass = data.Split(',')[1];
             if (user != null && pass != null)

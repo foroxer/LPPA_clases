@@ -23,7 +23,7 @@ public class LoginService
             }
             else
             {
-                SeguridadUtiles.grabarBitacora(0, "Se logueo " + usuario.username + " que tiene el tipo " + usuario.tipo);
+                BitacoraDAO.grabarBitacora(0, "Se logueo " + usuario.username + " que tiene el tipo " + usuario.tipo);
                 response.Cookies.Add(new HttpCookie("user", usuario.username));
                 response.Cookies.Add(new HttpCookie("tipo", usuario.tipo));
                 response.Cookies.Add(new HttpCookie("userId", usuario.id.ToString()));
