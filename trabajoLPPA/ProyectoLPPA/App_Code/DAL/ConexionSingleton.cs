@@ -13,6 +13,9 @@ namespace ProyectoLPPA
 
         private static SqlConnection _conexion;
 
+        public static String dbName = "lppa";
+
+        //public static String dbName = "[" + AppDomain.CurrentDomain.BaseDirectory + "APP_DATA\\BASEDEDATOS.MDF]";
         private static SqlConnection constructor()
         {
             

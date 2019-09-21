@@ -16,7 +16,7 @@ public class BitacoraService
     [MethodImpl(MethodImplOptions.Synchronized)]
     public String execute(String desde, String hasta)
     {
-        List<Bitacora> registros = BitacoraDao.execute(desde, hasta);
+        List<Bitacora> registros = BitacoraDAO.execute(desde, hasta);
         return new JavaScriptSerializer().Serialize(registros);
     }
 }

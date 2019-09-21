@@ -16,7 +16,7 @@ public class LoginDAO
     {
         SqlConnection cn = ConexionSingleton.obtenerConexion();
         cn.Open();
-        password = SeguridadUtiles.encriptarMD5(password);
+        password = CryptoUtils.encriptarMD5(password);
         SqlTransaction tx = cn.BeginTransaction();
         SqlCommand cmd = new SqlCommand("SELECT * from Usuario where Alias = @id and Password = @password");
         cmd.Parameters.Add(new SqlParameter("id", username));
