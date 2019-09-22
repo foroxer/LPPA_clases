@@ -26,18 +26,18 @@ public class BitacoraDAO
         List<Bitacora> registros = new List<Bitacora>();
 
         sb.Append(" SELECT * from vistaBitacora ");
-        sb.Append(desde != null || hasta != null ? " where " : "");
-        if(desde != null)
+        sb.Append(!String.IsNullOrEmpty(desde)|| !String.IsNullOrEmpty(hasta) ? " where " : "");
+        if(!String.IsNullOrEmpty(desde))
         {
             sb.Append(" fecha >= @desde");
             cmd.Parameters.Add(new SqlParameter("desde", desde));
         }
-        if (desde != null && hasta != null )
+        if (!String.IsNullOrEmpty(desde) && !String.IsNullOrEmpty(hasta))
         {
             sb.Append(" and ");
         }
 
-        if (hasta != null)
+        if (!String.IsNullOrEmpty(hasta))
         {
             sb.Append(" fecha <= @hasta");
             cmd.Parameters.Add(new SqlParameter("hasta", hasta));
