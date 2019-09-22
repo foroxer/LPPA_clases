@@ -2,27 +2,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml.Serialization;
 
 /// <summary>
 /// Descripción breve de Bitacora
 /// </summary>
+
 public class Bitacora
 {
-    private DateTime fecha;
+    private DateTime _fecha;
 
-    private String mensaje;
+    private String _mensaje;
 
-    private String nombre;
+    private String _nombre;
     public Bitacora(DateTime fecha, String mensaje,String nombre)
     {
-        this.fecha = fecha;
-        this.mensaje = mensaje;
-        this.nombre = nombre;
+        this._fecha = fecha;
+        this._mensaje = mensaje;
+        this._nombre = nombre;
+    }
+    public Bitacora() { }
+
+
+
+    public string fecha {
+        get { return _fecha.ToShortDateString(); }
+        set { _fecha = DateTime.Parse(value); }
     }
 
-    public String _fecha { get { return fecha.ToShortDateString(); } }
+    private int myVar;
 
-    public String _mensaje { get { return mensaje; } }
+    
 
-    public String _nombre { get { return nombre; } }
+
+    public string mensaje {
+        get { return _mensaje; }
+        set { _mensaje = value; }
+    }
+
+    
+    public string nombre {
+        get { return _nombre; }
+        set { _nombre = value;  }
+    }
 }
