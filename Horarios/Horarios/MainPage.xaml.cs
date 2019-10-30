@@ -27,6 +27,12 @@ namespace Horarios
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            this.gridviewLunes.Items.Add(new ListItemTemplate("9:00AM", "Spinning", "testasdasd"));
+            this.gridviewLunes.Items.Add(new ListItemTemplate("9:00AM", "Spinning", "testasdasd"));
+            this.gridviewLunes.Items.Add(new ListItemTemplate("9:00AM", "Spinning", "testasdasd"));
+            this.gridviewLunes.Items.Add(new ListItemTemplate("9:00AM", "Spinning", "testasdasd"));
+            this.gridviewLunes.Items.Add(new ListItemTemplate("9:00AM", "Spinning", "testasdasd"));
+            this.gridviewLunes.Items.Add(new ListItemTemplate("9:00AM", "Spinning", "testasdasd"));
         }
         
         

@@ -12,35 +12,46 @@
         <Pivot Title="Pivot">
             <PivotItem Header="Lunes">
                 <Grid Name="lunes">
-                    <GridView >
-                        <GridViewItem>
-                            <Canvas Width="350">
-                                <TextBlock Text="9:00" Width="100" Height="25" FontSize="20" TextAlignment="Center" UseLayoutRounding="True" Canvas.Left="0" Canvas.Top="0"/>
-                                <TextBlock Text="TEXTO DE PRUEBA" Width="300" Height="25" FontSize="20" TextAlignment="Center" UseLayoutRounding="True" Canvas.Left="100" Canvas.Top="0"/>
-                            </Canvas>
-                        </GridViewItem>
-
+                    <GridView Name="gridviewLunes">
+                        
                     </GridView>
-
+          
                 </Grid>
             </PivotItem>
             <PivotItem Header="Martes">
                 <Grid Name="martes">
+                    <GridView Name="gridviewMartes">
+                        <GridViewItem>
+                            <StackPanel>
+                                <TextBlock>ASDASDA</TextBlock>
+                                <TextBlock>ASDASDAS</TextBlock>
+
+                            </StackPanel>
+                        </GridViewItem>
+                    </GridView>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Miercoles">
                 <Grid Name="miercoles">
+                    <GridView Name="gridviewMiercoles">
+
+                    </GridView>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Jueves">
                 <Grid Name="jueves">
+                    <GridView Name="gridviewJueves">
+
+                    </GridView>
                 </Grid>
             </PivotItem>
             <PivotItem Header="Viernes">
                 <Grid Name="viernes">
+                    <GridView Name="gridviewViernes">
+                        
+                    </GridView>
                 </Grid>
             </PivotItem>
         </Pivot>
-
     </Grid>
 </Page>
