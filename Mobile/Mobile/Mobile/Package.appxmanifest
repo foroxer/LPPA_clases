@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
 
-  <Identity Name="422287b9-4636-41be-90e5-825ad11eb3d2"
-            Publisher="CN=navegador"
+  <Identity Name="c35610bd-68fb-464f-b621-caf322eecf6c"
+            Publisher="CN=Agustin"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="422287b9-4636-41be-90e5-825ad11eb3d2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="c35610bd-68fb-464f-b621-caf322eecf6c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Horarios</DisplayName>
-    <PublisherDisplayName>navegador</PublisherDisplayName>
+    <DisplayName>Mobile</DisplayName>
+    <PublisherDisplayName>Agustin</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -25,12 +25,12 @@
   <Applications>
     <Application Id="App"
         Executable="$targetnametoken$.exe"
-        EntryPoint="Horarios.App">
+        EntryPoint="Mobile.App">
         <m3:VisualElements
-            DisplayName="Horarios"
+            DisplayName="Mobile"
             Square150x150Logo="Assets\Logo.png"
             Square44x44Logo="Assets\SmallLogo.png"
-            Description="Horarios"
+            Description="Mobile"
             ForegroundText="light"
             BackgroundColor="transparent">
             <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png"/>
