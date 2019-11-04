@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<clientes>
+  <cliente id="1">
+    <nombre>Pedro</nombre>
+    <apellido>Gonzalez</apellido>
+    <dni>39457816</dni>
+    <numeroSocio>12345</numeroSocio>
+  </cliente>
+  <cliente id="2">
+    <nombre>Maria</nombre>
+    <apellido>Martinez</apellido>
+    <dni>38974567</dni>
+    <numeroSocio>54623</numeroSocio>
+  </cliente>
+  <cliente id="3">
+    <nombre>Betina</nombre>
+    <apellido>Rodriguez</apellido>
+    <dni>35687414</dni>
+    <numeroSocio>11223</numeroSocio>
+  </cliente>
+  <cliente id="4">
+    <nombre>Carlos</nombre>
+    <apellido>Marchovic</apellido>
+    <dni>36452147</dni>
+    <numeroSocio>11111</numeroSocio>
+  </cliente>
+  <cliente id="5">
+    <nombre>Dimitry</nombre>
+    <apellido>Karkarov</apellido>
+    <dni>36456987</dni>
+    <numeroSocio>22222</numeroSocio>
+  </cliente>
+  <cliente id="6">
+    <nombre>Jhon</nombre>
+    <apellido>Price</apellido>
+    <dni>38947817</dni>
+    <numeroSocio>33333</numeroSocio>
+  </cliente>
+  <cliente id="7">
+    <nombre>Graham</nombre>
+    <apellido>McTavish</apellido>
+    <dni>32654851</dni>
+    <numeroSocio>54321</numeroSocio>
+  </cliente>
+</clientes>
